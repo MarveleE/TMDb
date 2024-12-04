@@ -96,5 +96,18 @@ final class TMDbTVEpisodeService: TVEpisodeService {
 
         return videoCollection
     }
+    
+    func externalLinks(inTVSeries tvSeriesID: TVSeries.ID, inSeason seasonNumber: Int, inEpisode episodeNumber: Int) async throws -> TVEpisodeExternalLinksCollection {
+        let request = TVEpisodeExternalLinksRequest(seriesId: tvSeriesID, seasonNumber: seasonNumber, episodeNumber: episodeNumber)
+        
+        let linksCollection: TVEpisodeExternalLinksCollection
+        do {
+            linksCollection = try await apiClient.perform(request)
+        } catch let error {
+            throw TMDbError(error: error)
+        }
+
+        return linksCollection
+    }
 
 }

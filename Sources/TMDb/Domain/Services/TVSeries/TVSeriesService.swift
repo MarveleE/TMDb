@@ -187,7 +187,42 @@ public protocol TVSeriesService: Sendable {
     /// - Returns: Current popular TV series as a pageable list.
     ///
     func popular(page: Int?, language: String?) async throws -> TVSeriesPageableList
-
+    
+    ///
+    /// Returns a list current top rated TV series.
+    ///
+    /// [TMDb API - TV Series Lists: Popular](https://developer.themoviedb.org/reference/tv-series-popular-list)
+    ///
+    /// - Precondition: `page` can be between `1` and `1000`.
+    ///
+    /// - Parameters:
+    ///    - page: The page of results to return.
+    ///    - language: ISO 639-1 language code to display results in. Defaults to `en`.
+    ///
+    /// - Throws: TMDb error ``TMDbError``.
+    ///
+    /// - Returns: Current popular TV series as a pageable list.
+    ///
+    func topRated(page: Int?, language: String?) async throws -> TVSeriesPageableList
+    
+    ///
+    /// Returns a list current top rated TV series.
+    ///
+    /// [TMDb API - TV Series Lists: Popular](https://developer.themoviedb.org/reference/tv-series-popular-list)
+    ///
+    /// - Precondition: `page` can be between `1` and `1000`.
+    ///
+    /// - Parameters:
+    ///    - page: The page of results to return.
+    ///    - language: ISO 639-1 language code to display results in. Defaults to `en`.
+    ///
+    /// - Throws: TMDb error ``TMDbError``.
+    ///
+    /// - Returns: Current popular TV series as a pageable list.
+    ///
+    ///
+    func airingToday(page: Int?, language: String?, timezone: String?) async throws -> TVSeriesPageableList
+    
     ///
     /// Returns watch providers for a TV series
     ///

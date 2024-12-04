@@ -91,6 +91,26 @@ public protocol TVEpisodeService: Sendable {
         filter: TVEpisodeVideoFilter?
     ) async throws -> VideoCollection
 
+    ///
+    /// Returns the external ids that belong to a TV series episode.
+    ///
+    /// [TMDb API - TV Episode: Videos](https://developer.themoviedb.org/reference/tv-episode-videos)
+    ///
+    /// - Parameters:
+    ///    - episodeNumber: The episode number of a TV.
+    ///    - seasonNumber: The season number of a TV.
+    ///    - tvSeriesID: The identifier of the TV series.
+    ///
+    /// - Throws: TMDb error ``TMDbError``.
+    ///
+    /// - Returns: A collection of videos for the matching TV's episode.
+    ///
+    func externalLinks(
+        inTVSeries tvSeriesID: TVSeries.ID,
+        inSeason seasonNumber: Int,
+        inEpisode episodeNumber: Int
+    ) async throws -> TVEpisodeExternalLinksCollection
+
 }
 
 public extension TVEpisodeService {

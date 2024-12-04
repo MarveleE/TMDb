@@ -60,7 +60,8 @@ public struct TVSeason: Identifiable, Codable, Equatable, Hashable, Sendable {
     /// Episodes in this TV season.
     ///
     public let episodes: [TVEpisode]?
-
+    
+    public let episodeCount: Int?
     ///
     /// Creates a TV season object.
     ///
@@ -80,7 +81,8 @@ public struct TVSeason: Identifiable, Codable, Equatable, Hashable, Sendable {
         overview: String? = nil,
         airDate: Date? = nil,
         posterPath: URL? = nil,
-        episodes: [TVEpisode]? = nil
+        episodes: [TVEpisode]? = nil,
+        episodeCount: Int? = nil
     ) {
         self.id = id
         self.name = name
@@ -89,6 +91,7 @@ public struct TVSeason: Identifiable, Codable, Equatable, Hashable, Sendable {
         self.airDate = airDate
         self.posterPath = posterPath
         self.episodes = episodes
+        self.episodeCount = episodeCount
     }
 
 }

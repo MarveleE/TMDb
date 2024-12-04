@@ -66,5 +66,6 @@ extension APIRequestQueryItem.Name {
     static let language = APIRequestQueryItem.Name("language")
     static let region = APIRequestQueryItem.Name("region")
     static let apiKey = APIRequestQueryItem.Name("api_key")
+    static let timezone = APIRequestQueryItem.Name("timezone")
 
 }

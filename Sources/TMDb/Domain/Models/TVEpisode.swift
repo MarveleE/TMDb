@@ -58,7 +58,8 @@ public struct TVEpisode: Identifiable, Codable, Equatable, Hashable, Sendable {
     /// TV episode production code.
     ///
     public let productionCode: String?
-
+    
+    public let runtime: Int?
     ///
     /// TV episode still image path.
     ///
@@ -111,6 +112,7 @@ public struct TVEpisode: Identifiable, Codable, Equatable, Hashable, Sendable {
         overview: String? = nil,
         airDate: Date? = nil,
         productionCode: String? = nil,
+        runtime: Int? = nil,
         stillPath: URL? = nil,
         crew: [CrewMember]? = nil,
         guestStars: [CastMember]? = nil,
@@ -124,6 +126,7 @@ public struct TVEpisode: Identifiable, Codable, Equatable, Hashable, Sendable {
         self.overview = overview
         self.airDate = airDate
         self.productionCode = productionCode
+        self.runtime = runtime
         self.stillPath = stillPath
         self.crew = crew
         self.guestStars = guestStars

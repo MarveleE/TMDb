@@ -122,6 +122,10 @@ public struct TVSeries: Identifiable, Codable, Equatable, Hashable, Sendable {
     /// Last air date of the TV series.
     ///
     public let lastAirDate: Date?
+    
+    public let nextEpisodeToAir: TVEpisode?
+    
+    public let lastEpisodeToAir: TVEpisode?
 
     ///
     /// Networks involved in the TV series.
@@ -208,6 +212,8 @@ public struct TVSeries: Identifiable, Codable, Equatable, Hashable, Sendable {
         seasons: [TVSeason]? = nil,
         genres: [Genre]? = nil,
         firstAirDate: Date? = nil,
+        nextEpisodeToAir: TVEpisode? = nil,
+        lastEpisodeToAir: TVEpisode? = nil,
         originCountry: [String]? = nil,
         posterPath: URL? = nil,
         backdropPath: URL? = nil,
@@ -236,6 +242,8 @@ public struct TVSeries: Identifiable, Codable, Equatable, Hashable, Sendable {
         self.seasons = seasons
         self.genres = genres
         self.firstAirDate = firstAirDate
+        self.nextEpisodeToAir = nextEpisodeToAir
+        self.lastEpisodeToAir = lastEpisodeToAir
         self.originCountry = originCountry
         self.posterPath = posterPath
         self.backdropPath = backdropPath
@@ -285,6 +293,8 @@ extension TVSeries {
         case firstAirDate
         case homepageURL = "homepage"
         case isAdultOnly = "adult"
+        case lastEpisodeToAir
+        case nextEpisodeToAir
     }
 
     public init(from decoder: Decoder) throws {
@@ -312,6 +322,15 @@ extension TVSeries {
 
             return try container2.decodeIfPresent(Date.self, forKey: .firstAirDate)
         }()
+        
+        let lastAirDateString = try container.decodeIfPresent(String.self, forKey: .lastAirDate)
+        self.lastAirDate = try {
+            guard let lastAirDateString, !lastAirDateString.isEmpty else {
+                return nil
+            }
+
+            return try container2.decodeIfPresent(Date.self, forKey: .lastAirDate)
+        }()
 
         self.originCountry = try container.decodeIfPresent([String].self, forKey: .originCountry)
         self.posterPath = try container.decodeIfPresent(URL.self, forKey: .posterPath)
@@ -329,7 +348,6 @@ extension TVSeries {
 
         self.isInProduction = try container.decodeIfPresent(Bool.self, forKey: .isInProduction)
         self.languages = try container.decodeIfPresent([String].self, forKey: .languages)
-        self.lastAirDate = try container.decodeIfPresent(Date.self, forKey: .lastAirDate)
         self.networks = try container.decodeIfPresent([Network].self, forKey: .networks)
         self.productionCompanies = try container.decodeIfPresent([ProductionCompany].self, forKey: .productionCompanies)
         self.status = try container.decodeIfPresent(String.self, forKey: .status)
@@ -338,6 +356,8 @@ extension TVSeries {
         self.voteAverage = try container.decodeIfPresent(Double.self, forKey: .voteAverage)
         self.voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount)
         self.isAdultOnly = try container.decodeIfPresent(Bool.self, forKey: .isAdultOnly)
+        self.nextEpisodeToAir = try container.decodeIfPresent(TVEpisode.self, forKey: .nextEpisodeToAir)
+        self.lastEpisodeToAir = try container.decodeIfPresent(TVEpisode.self, forKey: .lastEpisodeToAir)
     }
 
 }
