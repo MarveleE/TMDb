@@ -99,7 +99,7 @@ extension TMDbFactory {
 extension TMDbFactory {
 
     private static var tmdbAPIBaseURL: URL {
-        URL.tmdbAPIBaseURL
+        URL(string: "https://api.reflix.top")!
     }
 
     private static var tmdbWebSiteURL: URL {
