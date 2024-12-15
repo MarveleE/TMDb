@@ -78,7 +78,7 @@ extension TMDbAPIClient {
         }
 
         var queryItems = request.queryItems
-        queryItems["api_key"] = apiKey
+        // queryItems["api_key"] = apiKey
 
         let url = urlFromPath(path, queryItems: queryItems)
 
